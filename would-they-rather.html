@@ -35,7 +35,7 @@
 		check = data.slice(13, 14);
 		answer = data.slice(14, 15);
 		seed = data.slice(15, 16)
-		players = data.slice(16).split("~");
+		players = data.slice(16).split("&");
 		otherPlayer = players[0];
 		thisPlayer = players[1];
 		document.getElementById("streak-widget").innerHTML = thisPlayer + " and " + otherPlayer + " are on a " + streak + " correct answer streak.";
@@ -138,7 +138,7 @@
 		newstreak = streak;
 		newcheck = "X";
 		newanswer = "";
-		newplayers = thisPlayer + "~" + otherPlayer;
+		newplayers = thisPlayer + "&" + otherPlayer;
 		console.log(newplayers)
 		
 		// Change the label
