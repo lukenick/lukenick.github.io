@@ -55,14 +55,17 @@
 		if (decision == "L" && correctAnswer == 0) {
 			streak = streak + 1;
 			document.getElementById("title-text").innerHTML = "CORRECT! <br> Together you've got the last " + streak + " answers right! <br> Now what would you pick from: "
+			document.getElementById("streak-widget").innerHTML = thisPlayer + " and " + otherPlayer + " are on a " + streak + " correct answer streak.";
 			generateQuestion();
 		} else if (decision == "R" && correctAnswer == 1) {
 			streak = streak + 1;
 			document.getElementById("title-text").innerHTML = "CORRECT! <br> Together you've got the last " + streak + " answers right! <br> Now what would you pick from: "
+			document.getElementById("streak-widget").innerHTML = thisPlayer + " and " + otherPlayer + " are on a " + streak + " correct answer streak.";
 			generateQuestion();
 		} else {
 			streak = 0;
-			document.getElementById("title-text").innerHTML = "Oh no! That was incorrect, which means your streak is back to zero"
+			document.getElementById("title-text").innerHTML = "Oh no! Your streak is back to 0. Now what would you pick from: "
+			document.getElementById("streak-widget").innerHTML = thisPlayer + " and " + otherPlayer + " are on a " + streak + " correct answer streak.";
 			generateQuestion();
 		}
 		//document.getElementById("top-box").style.height = "40%";
@@ -132,7 +135,7 @@
 		//newlistB = Math.floor(Math.random()*lists.length)
 		//newitemB = Math.floor(Math.random()*lists[newlistB].length)
 		
-		newstreak = streak+1;
+		newstreak = streak;
 		newcheck = "X";
 		newanswer = "";
 		newplayers = thisPlayer + "~" + otherPlayer;
