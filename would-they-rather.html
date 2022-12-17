@@ -54,12 +54,12 @@
 		//correctAnswer = (answer - listA - itemB)%2;
 		if (decision == "L" && correctAnswer == 0) {
 			streak = streak + 1;
-			document.getElementById("title-text").innerHTML = "CORRECT! <br> Together you've got the last " + streak + " answers right! <br> Now what would you pick from: "
+			document.getElementById("title-text").innerHTML = "CORRECT! <br> Now what would you pick from: "
 			document.getElementById("streak-widget").innerHTML = thisPlayer + " and " + otherPlayer + " are on a " + streak + " correct answer streak.";
 			generateQuestion();
 		} else if (decision == "R" && correctAnswer == 1) {
 			streak = streak + 1;
-			document.getElementById("title-text").innerHTML = "CORRECT! <br> Together you've got the last " + streak + " answers right! <br> Now what would you pick from: "
+			document.getElementById("title-text").innerHTML = "CORRECT! <br> Now what would you pick from: "
 			document.getElementById("streak-widget").innerHTML = thisPlayer + " and " + otherPlayer + " are on a " + streak + " correct answer streak.";
 			generateQuestion();
 		} else {
