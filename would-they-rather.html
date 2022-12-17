@@ -182,7 +182,7 @@
 	function clickedLeft() {
 		if (guessed) {
 			navigator.clipboard.writeText(leftURL);
-			document.getElementById("title-text").innerHTML = "Now share the link in your clipboard with " + otherPlayer + " to keep the game going."
+			document.getElementById("title-text").innerHTML = "Now share the link in your clipboard with " + otherPlayer + " to keep going."
 		} else {
 			guessed = true;
 			madeChoice('L');
@@ -191,7 +191,7 @@
 	function clickedRight() {
 		if (guessed) {
 			navigator.clipboard.writeText(rightURL);
-			document.getElementById("title-text").innerHTML = "Now share the link in your clipboard with " + otherPlayer + " to keep the game going."
+			document.getElementById("title-text").innerHTML = "Now share the link in your clipboard with " + otherPlayer + " to keep going."
 		} else {
 			guessed = true;
 			madeChoice('R');
@@ -258,6 +258,6 @@
 		float: left;
 		text-align: center;
 		height: 15%;
-		font-size: 4vmin;
+		font-size: 4.5vmin;
 	}
 </style>
