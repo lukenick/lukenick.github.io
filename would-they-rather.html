@@ -21,7 +21,8 @@
 	let cities = ["New York", "Paris", "London", "Rome", "Beijing", "Tokyo", "Sydney", "Cairo", "Los Angeles", "Moscow", "Venice", "Barcelona", "Madrid", "Edinburgh", "Los Vegas", "Miami", "Hong Kong", "Singapore", "Canberra", "Auckland", "Buenos Aires", "Chicago", "Brussels", "Havana", "Helsinki", "Athens", "Nairobi", "Mexico City", "Lima", "Seoul", "Abu Dhabi", "Ankara"];
 	let colours = ["red", "green", "blue", "yellow", "orange", "brown", "purple", "pink"];
 	let foods = ["pizza", "burger", "lasagna", "pie", "ice-cream", "waffles", "pancakes", "chips", "fried chicken", "fruit salad", "gelato", "spaghetti", "sushi", "pineapple", "pumpkin", "risotto", "nachos", "toast", "croissants", "bagels", "walnuts", "potato salad", "dumplings", "hash browns", "peanut butter"];
-	let lists = [animals, cities, colours, foods];
+	let jobs = ["nurse", "teacher", "pilot", "air traffic controller", "doctor", "priest", "chef", "ninja", "pirate", "singer", "pianist", "dancer", "tik-toker", "soldier", "model", "accountant", "librarian", "baker", "farmer", "electrician", "plumber", "piano tuner", "architect", "mechanic", "astronaut"]
+	let lists = [animals, cities, colours, foods, jobs];
 
 	function loadChoices(){
 		//companyName = generateCompanyName();
@@ -123,6 +124,34 @@
 			newitemA = Math.floor(Math.random()*lists[newlistA].length);
 			newitemB = Math.floor(Math.random()*lists[newlistB].length);
 		}
+		//7 = Dye your hair
+		if (newseed == 7) {
+			newlistA = 2; // Number of colours list
+			newlistB = 2;
+			newitemA = Math.floor(Math.random()*lists[newlistA].length);
+			newitemB = Math.floor(Math.random()*lists[newlistB].length);
+		}
+		//8 = Own a ___ car
+		if (newseed == 8) {
+			newlistA = 2; // Number of colours list
+			newlistB = 2;
+			newitemA = Math.floor(Math.random()*lists[newlistA].length);
+			newitemB = Math.floor(Math.random()*lists[newlistB].length);
+		}
+		//9 = Become a ___
+		if (newseed == 9) {
+			newlistA = 4; // Number of jobs list
+			newlistB = 4;
+			newitemA = Math.floor(Math.random()*lists[newlistA].length);
+			newitemB = Math.floor(Math.random()*lists[newlistB].length);
+		}
+		//0 = Have to fight a ___
+		if (newseed == 0) {
+			newlistA = 4; // Number of jobs list
+			newlistB = 4;
+			newitemA = Math.floor(Math.random()*lists[newlistA].length);
+			newitemB = Math.floor(Math.random()*lists[newlistB].length);
+		}
 		
 		
 		
@@ -182,6 +211,7 @@
 			leftURL = window.location.protocol + "//" + window.location.hostname + "/" + window.location.pathname.slice(1) + "?" + version + newlistA + newitemA + newlistB + newitemB + newstreak + newcheck + leftAnswer + newseed + newplayers;
 			rightURL = window.location.protocol + "//" + window.location.hostname + "/" + window.location.pathname.slice(1) + "?" + version + newlistA + newitemA + newlistB + newitemB + newstreak + newcheck + rightAnswer + newseed + newplayers;
 		}
+
 	}
 	function clickedLeft() {
 		if (guessed) {
@@ -221,6 +251,18 @@
 		} else if (thisSeed ==6) {
 			document.getElementById("thing-one").innerHTML = "Have infinite " + item1;
 			document.getElementById("thing-two").innerHTML = "Have infinite " + item2;
+		} else if (thisSeed ==7) {
+			document.getElementById("thing-one").innerHTML = "Dye your hair " + item1;
+			document.getElementById("thing-two").innerHTML = "Dye your hair " + item2;
+		} else if (thisSeed ==8) {
+			document.getElementById("thing-one").innerHTML = "Own a " + item1 + " car";
+			document.getElementById("thing-two").innerHTML = "Own a " + item2 + " car";
+		} else if (thisSeed ==9) {
+			document.getElementById("thing-one").innerHTML = "Become a " + item1;
+			document.getElementById("thing-two").innerHTML = "Become a " + item2;
+		} else if (thisSeed ==0) {
+			document.getElementById("thing-one").innerHTML = "Have to fight a " + item1;
+			document.getElementById("thing-two").innerHTML = "Have to fight a  " + item2;
 		} else {
 			document.getElementById("thing-one").innerHTML = item1;
 			document.getElementById("thing-two").innerHTML = item2;
@@ -262,6 +304,6 @@
 		float: left;
 		text-align: center;
 		height: 15%;
-		font-size: 4.5vmin;
+		font-size: 4vmin;
 	}
 </style>
