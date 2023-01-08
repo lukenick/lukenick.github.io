@@ -1,0 +1,65 @@
+	body {
+		margin: 0;
+		background-color: #c7a7d4;
+		word-wrap: break-word;
+	}
+	
+	#left-box {
+		width: 50%;
+		float: left;
+		text-align: center;
+		height: 40%;
+		font-size: 6vmin;
+		background-color: #4081c7;
+	}
+	#right-box {
+		width: 50%;
+		float: left;
+		text-align: center;
+		height: 40%;
+		font-size: 6vmin;
+		background-color: #c74040;
+	}
+	#bottom-box {
+		width: 100%;
+		float: left;
+		text-align: center;
+		height: 15%;
+		font-size: 4vmin;
+	}
+	
+	input[type=text] {
+		height: 50%;
+		width: 80%;
+		font-size: 5vmin;
+		text-align: center;
+	}
+	
+
+/* Divs only on new-game.html*/
+	#first-instructions {
+		width: 70%;
+		padding-left: 15%;
+		padding-right: 15%;
+		float: left;
+		height: 35%;
+		margin-top: 5%;
+		text-align: center;
+		font-size: 4.5vmin;
+	}
+	#first-instructions h1 {
+		font-size: 5vmin;
+	}
+	#first-instructions button {
+		width: 30%;
+		height: 15%;
+	}
+/* Divs only on would-the-rather.html*/
+	#top-box {
+		width: 100%;
+		float: left;
+		height: 35%;
+		margin-top: 5%;
+		text-align: center;
+		font-size: 5vmin;
+	}

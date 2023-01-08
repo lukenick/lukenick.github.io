@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Would They Rather: New Game </title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<div id="first-instructions">
+		<h1> Start a new game </h1>
+		<p id="instructionsText"> Starting a game is simple. <br> First step: Type in your name and your friend's name then hit <br> </p>
+		<button id="doneButton" onclick="enteredPlayerNames()"> DONE </button>
+	</div>
+
+	<div id="left-box" onclick="clickedLeft()">	
+		<h2 id="thing-one" style="display: none;"> Eat pizza </h2>
+		<label for="thisPlayer" id="thisPlayerLabel"> Your Name: </label> <br>
+		<input type="text" id="thisPlayerInput" name="thisPlayer"> <br>
+		
+	</div>
+	<div id="right-box" onclick="clickedRight()">
+		<h2 id="thing-two" style="display: none;"> Eat ice-cream </h2>
+		<label for="otherPlayer" id="otherPlayerLabel"> Friend's Name: </label> <br>
+		<input type="text" id="otherPlayerInput" name="otherPlayer"> <br>
+	</div>
+
+	<div id="bottom-box">
+		<p> Nicknames are fine as long as they are friendly </p>
+	</div>
+</body>
+</html>
+
+<script src="newGameScript.js"></script>
