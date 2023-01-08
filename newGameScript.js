@@ -49,7 +49,7 @@ function calculateURLS() {
 	var version = "1",
 		streak = "000",
 		check = "0",
-		seed = "1",
+		seed = "5",
 		players = thisPlayer + "&" + otherPlayer;
 		leftAnswer = "0";
 		rightAnswer = "1";
