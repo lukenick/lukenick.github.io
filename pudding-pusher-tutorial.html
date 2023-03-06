@@ -1,0 +1,362 @@
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+	body {
+		padding: 50px 15% 0% 15%;
+		<!-- background-color: #f8c87e -->;
+		background-color: #dff9fb;
+		color: #222222;
+		font-family: 'Poppins', sans-serif;
+	}
+	.codeBox {
+		white-space: nowrap;
+		counter-reset: line;
+		min-height: 200px;
+		background: #222222;
+		padding: 15px;
+		color: #ffffff;
+		text-align: left;
+		font-size: 16px;
+		margin: 0 auto;
+	}
+	.explanationBox {
+		border-radius: 20px;
+		background-color: #ffffff;
+		margin: 20 0 20 0;
+		padding: 1 10 1 10;
+	}
+	.explanationBox h2 {
+		font-size: 26px;
+		color: #222222;
+		text-align: center;
+	}
+	.explanationBox p {
+		font-size: 20px;
+		color: #222222;
+	}
+	.headingBox {
+		border-radius: 20px;
+		background-color: #ffffff;
+		margin: 20 20% 20 20%;
+		padding: 1 10 1 10;
+		text-align: center;
+		color: #222222;
+		width: 60%;
+	}
+	h1 {
+		color: #222222;
+		font-size: 48px;
+		text-align: center;
+	}
+</style>
+<body>
+
+<h1> Pudding Pusher Tutorial </h1>
+
+<!-- Version 0.1  -->
+<div class="explanationBox">
+	<h2> Version 0.1 - Get elements on screen </h2>
+	<p>
+	I’m a big fan of starting off a web project by just getting some content onto the page. No need to make it look fancy or pretty, let’s just get some text and images onto the page and then once they are there we can fancy it up.
+	</p>
+</div>
+<div class="codeBox" style="min-width: 800px;">
+	<pre>
+1	&lt;html&gt;
+2	&lt;head&gt;
+3		&lt;title&gt; Pudding Pusher &lt;/title&gt;
+4		&lt;!-- Find meta tags and put them here --&gt;
+5	&lt;/head&gt;
+6	&lt;body&gt;
+7		&lt;h2&gt; You have 0 puddings. &lt;/h2&gt;
+8		&lt;img src="main-pudding.png"&gt;
+9	&lt;/body&gt;
+10	&lt;/html&gt;
+	</pre>
+</div>
+<div class="explanationBox" style="">
+	<p> 
+		With that in mind we’re going to start off by making a html page with our core elements - an image to push and a counter saying how many times we’ve pushed it. Don’t even bother resizing your image for now, we’re going to do that later.
+		While we’re at it, let’s make sure to add some of the standard structure to our HTML file - &lt;head&gt;, &lt;body&gt; and so on.
+		<br><br>
+		You'll see on Line 4 I've left space for you to add your meta-tags. I'll leave that as an exercise to the reader to look up and add in.
+	</p>
+</div>	
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.2  -->
+<div class="explanationBox">
+	<h2> Version 0.2 - Pushing pudding increments counter </h2>
+	<p>
+	Now that we have our elements on the page we can start adding some interactivity. We’re going to begin by building a MVP of the game - in digital technology an MVP is a Minimum Viable Product. What’s the smallest version of your project you can make that still has some point.
+	<br><br>
+	In this case I think the minimum viable product is when you push the image the counter goes up.
+	</p>
+</div>
+<div class="codeBox" style="min-width: 800px;">
+	<pre>
+...
+6	&lt;body&gt;
+7		&lt;h2 id="pudding-count"&gt; You have 0 puddings. &lt;/h2&gt;
+8		&lt;img id="pudding-pic" src="main-pudding.png"&gt;
+9	&lt;/body&gt;
+10	&lt;script&gt;
+11	var puddings=0;
+12
+13	// Event Listeners for Pudding Pressing
+14	document.getElementById("pudding-pic").addEventListener("click", pushPudding);
+15
+16	function pushPudding(){
+17		puddings = puddings + 1;
+18		document.getElementById("pudding-count").innerHTML = "You have " + puddings + " puddings.";
+19	}
+20
+21 	&lt;/script&gt;
+22	&lt;/html&gt;
+	</pre>
+</div>
+<div class="explanationBox" style="">
+	<p> 
+		The first thing we need to do is add IDs to our image and our counter, so that we can refer to them in our javascript - check out Lines 7 and 8.
+		<br><br>
+		Now in our javascript the first thing we need to do is say that we start off with zero puddings, so let's go ahead and make a variable that says that - check out Lines 11.
+		<br><br>
+		Next we want to create an EventListener to listen out for when someone pushes our pudding. When they do, it runs the function pushPudding() which does two things. One - it increments the amount of puddings (increment means increase by one). 
+		Two - it then updates the counter on screen to show the new value of our variable.
+	</p>
+</div>	
+
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.3  -->
+<div class="explanationBox">
+	<h2> Version 0.3 - Split layout into three sections </h2>
+	<p>
+	We have a game! Well, we have a button you can press over and over, but that’s the core aspect of our game. So now that we’ve got that sorted, it’s time to start improving things.
+	<br><br>
+	What we're going to start off doing is restructuring our screen layout so it's ready for future additions. Changing our layout is best done with CSS.
+	</p>
+</div>
+<div class="codeBox" style="min-width: 800px;">
+	<pre>
+...
+5	&lt;/head&gt;
+6	&lt;style&gt;
+7		body {
+8			text-align: center;
+9		}
+10		#left-section {
+11			float: left;
+12			width: 33%;
+13			height: 100%;
+14		}
+15		#middle-section {
+16			float: left;
+17			width: 33%;
+18			height: 100%;
+19		}
+20		#right-section {
+21			float: left;
+22			width: 33%;
+23			height: 100%;
+24		}
+25		#left-section img{
+26
+27			width: 80%;
+28			padding: 10%;
+29		}
+30	&lt;/style&gt;
+31	&lt;body&gt;
+32		&lt;div id="left-section"&gt;
+33			&lt;h2 id="pudding-count"> You have 0 puddings.&lt;/h2&gt;
+34			&lt;img id="pudding-pic" src="main-pudding.png"&gt;
+35		&lt;/div&gt;
+36		&lt;div id="middle-section"&gt;
+37			&lt;h3> This will show what upgrades you have already purchased. &lt;/h3&gt;
+38		&lt;/div&gt;
+39		&lt;div id="right-section"&gt;
+40			&lt;h3&gt; This will show what upgrades you are able to purchase. &lt;/h3&gt;
+41		&lt;/div&gt;
+42
+43	&lt;/body&gt;
+...
+	</pre>
+</div>
+<div class="explanationBox" style="">
+	<p> 
+		It looks like a lot of new code, but don't worry - it's not too complicated.
+		<br><br>
+		Basically we have three sections - a left hand side with the pudding and the counter, a middle hand side with a list of upgrades you’ve already bought, and a right hand side with a shopfront of upgrades you could purchase.
+		<br><br>
+		So to do that we’re going to split our existing code into three divs, add some css to structure it, as well as getting our image down to a more respectable size. And just because I think it’ll make things look a bit better, I’m going to give everything a “text-align: center” for some style.
+	</p>
+</div>
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.4  -->
+<div class="explanationBox">
+	<h2> Version 0.4 - Adding percentage upgrades </h2>
+	<p>
+	Time to make something to do with all the puddings we've been pushing. 
+	It’s time for our first upgrade. A core mechanic of this style of game is that when you accumulate enough currency (ie puddings) you can use those puddings to purchase an upgrade which helps you earn more currency (puddings) in the future. The simplest upgrade to program is a percentage upgrade. 
+	What that means is when you purchase this upgrade you no longer get one pudding each time you press, but you now get slightly more.
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 800px;">
+	<pre>
+...
+36	&lt;div id="middle-section"&gt;
+37		&lt;h3 id="bowl-count"&gt; You own 0 bowls. &lt;/h3&gt;
+38	&lt;/div&gt;
+39	&lt;div id="right-section"&gt;
+40		&lt;h3 id="buy-bowl"&gt; BUY BOWL (Cost = 10 Puddings)&lt;/h3&gt;
+41		&lt;h4&gt; A fancy bowl to make pudding making easier. &lt;/h4&gt;
+42	&lt;/div&gt;
+...
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	We're going to start off by modifying our HTML so that we have appropriate text to display how many bowls we own (Line 37) and to give us somewhere to click to buy more (Line 40 and 41)
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 800px;">
+	<pre>
+...
+45	&lt;script&gt;
+46	var puddings=0;
+47	var bowls=0;
+48
+49	// Event Listeners for Pudding Pressing
+50	document.getElementById("pudding-pic").addEventListener("click", pushPudding);
+51
+52	// Event Listeners for Upgrades
+53	document.getElementById("buy-bowl").addEventListener("click", buyBowl);
+54
+55	function pushPudding(){
+56		puddings = puddings + 1 + bowls*0.01;
+57		document.getElementById("pudding-count").innerHTML = "You have " + puddings + " puddings.";
+58	}
+59
+60	function buyBowl(){
+61		if (puddings >= 10) {
+62			puddings = puddings - 10;
+63			bowls = bowls + 1;
+64			document.getElementById("bowl-count").innerHTML = "You have " + bowls + " bowls.";	
+65		}
+66	}
+67
+68
+69
+70 &lt;/script&gt;
+...
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	We need to make a variable to keep track of how many bowls we own, and then initialise (start) it at 0. Hopefully you can work out what line this is on!
+	<br><br>
+	Next lets add an eventListener for when we push to purchase a bowl, just like we did before for pushing the pudding. The main difference is inside the function we need to check if the amount of puddings is at least 10 before doing anything, and if it is then we need to subtract 10 from the player’s current pudding amount. Check out Lines 53 to 58.
+	<br><br>
+	That’s pretty good so far but we just need to do one more thing - make the bowl actually do something! To do this we’re going to modify the  code for when we push the pudding so that it gives us 1% extra puddings per bowl we own. This goes back on Line 56. Hint - Remember that 1% can also be written as 0.01
+	<br><br>
+	Now before you run your game and start panicking you have a bug, don't be worried if you have some weirdness with decimal numbers. My screen right now says I have 2.0199999999999996 puddings, when really it should just be saying 2.02. We’re going to leave this problem for now and come back to it as an optional extra - it doesn’t get in the way of our core game, but it is some messiness that would be good to fix up later.
+	</p>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.5  -->
+<div class="explanationBox">
+	<h2> Version 0.5 - Adding timed upgrades </h2>
+	<p>
+	The last thing we need to finish our MVP of our game is some timed aspects. One of the satisfying parts of this game is once you no longer have to do all the clicking, instead you purchase upgrades which will slowly keep your pudding count ticking up as long as you leave the game open.
+	<br><br>
+	Introducing - the employee!
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 800px;">
+	<pre>
+...
+36	&lt;div id="middle-section"&gt;
+37		&lt;h3 id="bowl-count"&gt; You own 0 bowls. &lt;/h3&gt;
+38		&lt;h3 id="employee-count"&gt; You have 0 employees. &lt;/h3&gt;
+39	&lt;/div&gt;
+40	&lt;div id="right-section"&gt;
+41		&lt;h3 id="buy-bowl"&gt; BUY BOWL (Cost = 10 Puddings)&lt;/h3&gt;
+42		&lt;h4&gt; A fancy bowl to make pudding making easier. &lt;/h4&gt;
+43		&lt;h3 id="buy-employee"&gt; HIRE EMPLOYEE (Cost = 100 Puddings)&lt;/h3&gt;
+44		&lt;h4&gt; Hire a staff member to slowly make puddings on their own. &lt;/h4&gt;
+45	&lt;/div&gt;
+...
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	Like when we made our bowls, the first step is to update our HTML code so that we have appropriate text to show our current number of employees, and something to click on to get more.
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 800px;">
+	<pre>
+...
+50	&lt;script&gt;
+51		var puddings=0;
+52		var bowls=0;
+53		var employees=0;
+54
+55		// Event Listeners for Pudding Pressing
+56		document.getElementById("pudding-pic").addEventListener("click", pushPudding);
+57
+58		// Event Listeners for Upgrades
+59		document.getElementById("buy-bowl").addEventListener("click", buyBowl);
+60		document.getElementById("buy-employee").addEventListener("click", buyEmployee);
+61
+62		function pushPudding(){
+63			puddings = puddings + 1 + bowls*0.01;
+64			document.getElementById("pudding-count").innerHTML = "You have " + puddings + " puddings.";
+65		}
+66
+67		function buyBowl(){
+68			if (puddings >= 10) {
+69				puddings = puddings - 10;
+70				bowls = bowls + 1;
+71				document.getElementById("bowl-count").innerHTML = "You have " + bowls + " bowls.";	
+72			}
+73		}
+74		function buyEmployee(){
+75			if (puddings >= 100) {
+76				puddings = puddings - 100;
+77				employees = employees + 1;
+78				document.getElementById("employee-count").innerHTML = "You have " + employees + " employees.";	
+79			}
+80		}
+81
+82		const interval = setInterval(function() {
+83			puddings = puddings + employees*0.1
+84			document.getElementById("pudding-count").innerHTML = "You have " + puddings + " puddings.";
+85		}, 1000);
+86
+87
+88	&lt;/script&gt;
+...
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	Now let's turn our mind to the javascript. First - add a variable for employees that instantiates at 0, then add an eventListener for when someone hires an employee. Just like before, that connects to a function which checks you can afford an employee, and if so decreases your amount of puddings and increases your amount of employees.
+	<br><br>
+	The part where it gets more interesting is adding in the timer which will slowly give us more puddings if we have employees. The piece of code at the end on Lines 82 to 85 is a function that runs every 1000 milliseconds (aka 1 second). Inside it you can put the code you want to run, which might just be a function that does something more complicated. For now, we’re just going to get it to work out how many puddings our employees made, and then update the pudding count on screen.
+	<br><br>
+	And just like that you now have a basic MVP version of the game, as well as the skills you need to now go and extend it with lots of different cool features.
+	</p>
+</div>
+
+</body>

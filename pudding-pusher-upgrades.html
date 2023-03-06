@@ -1,0 +1,216 @@
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+	body {
+		margin: 0;
+		padding: 5%;
+		background-color: #dff9fb;
+		font-family: 'Poppins', sans-serif;
+	}
+	h1 {
+		text-align: center;
+		font-size: 60px;
+	}
+	h2 {
+		text-align: center;
+		font-size: 24px;
+	}
+	.ux {
+		background-color: #f0932b;
+	}
+	.score {
+		background-color: #eb4d4b;
+	}
+	.code-style {
+		background-color: #6ab04c;
+	}
+	.text-format {
+		background-color: #e056fd;
+	}
+	.upgradeCard {
+		float: left;
+		width: 200px;
+		min-height: 200px;
+		margin: 50 2% 50 2%;
+		padding: 30px;
+		border: 5px solid black;
+
+	}
+	.upgradeCard:hover .cardDescription{
+		display: block;
+		height: 400px;
+		font-size: 18px; 
+	}
+	
+	.upgradeCard:hover {
+		
+	}
+	
+	.cardTitle {
+		font-size: 28px;
+		width: 50%;
+		float: left;
+		height: 150px;
+		padding-right: 10%;
+	}
+	.cardDifficulty {
+		font-size: 48px;
+		width: 30%;
+		float: right;
+		height: 65px;
+		text-align: center;
+		margin-left: 10%;
+		margin-bottom: 85px;
+		background-color: white;
+		border-radius: 50px;
+		
+	}
+	.cardDescription {
+		display: none;
+	}
+	.headingContainer {
+		
+	}
+
+	
+</style>
+
+<body>
+	<h1> Potential Upgrades For Your Game </h1>
+	<h2> Hover over to see more details </h2>
+	<h2> Red = UX Upgrades, Green=Score Upgrades, Orange=Code Logic Upgrades, Purple=Text Formatting Upgrades </h2>
+
+	<div class="upgradeCard ux">
+		<div class="headingContainer">
+			<span class="cardTitle"> Images of Purchases </span>
+			<span class="cardDifficulty"> 1 </span>
+		</div>
+		<p class="cardDescription"> The middle section shows images of what you have purchased, as well as a number count. </p>
+	</div>
+
+	<div class="upgradeCard score">
+		<div class="headingContainer">
+			<span class="cardTitle"> More Upgrades (Percentage)</span>
+			<span class="cardDifficulty"> 1 </span>
+		</div>
+		<p class="cardDescription"> Let the user purchase different percentage upgrades at different prices. </p>
+	</div>
+
+	<div class="upgradeCard score">
+		<div class="headingContainer">
+			<span class="cardTitle"> More Upgrades (Timed) </span>
+			<span class="cardDifficulty"> 1 </span>
+		</div>
+		<p class="cardDescription"> Let the user purchase different timed upgrades at different prices. </p>
+	</div>
+
+	<div class="upgradeCard code-style">
+		<div class="headingContainer">
+			<span class="cardTitle"> Cleanup Your Code </span>
+			<span class="cardDifficulty"> 2 </span>
+		</div>
+		<p class="cardDescription"> Refactor your code so that you have one central function which updates the pudding-count on the screen, rather than multiple pieces of code operating the same logic. </p>
+	</div>
+	
+	<div class="upgradeCard text-format">
+		<div class="headingContainer">
+			<span class="cardTitle"> Rounded Decimals </span>
+			<span class="cardDifficulty"> 2 </span>
+		</div>
+		<p class="cardDescription"> Round numbers to 2 Decimal Places (or other DP of your choice). </p>
+	</div>
+
+	<div class="upgradeCard text-format">
+		<div class="headingContainer">
+			<span class="cardTitle"> Proper Grammar</span>
+			<span class="cardDifficulty"> 2 </span>
+		</div>
+		<p class="cardDescription"> If the player currently owns 1 of something, don't use a plural for its noun (ie 1 bowl versus 1 bowls). </p>
+	</div>
+
+	<div class="upgradeCard ux">
+		<div class="headingContainer">
+			<span class="cardTitle"> Custom Name </span>
+			<span class="cardDifficulty"> 2 </span>
+		</div>
+		<p class="cardDescription"> Give the player the opportunity to name their pudding shop. </p>
+	</div>
+	
+
+	<div class="upgradeCard score">
+		<div class="headingContainer">
+			<span class="cardTitle"> Better Logic </span>
+			<span class="cardDifficulty"> 3 </span>
+		</div>
+		<p class="cardDescription"> Rework your logic so that different upgrades effect one another, for instance an employee with a bowl is more efficent than an employee without. </p>
+	</div>
+
+	<div class="upgradeCard score">
+		<div class="headingContainer">
+			<span class="cardTitle"> Price Scaling </span>
+			<span class="cardDifficulty"> 3 </span>
+		</div>
+		<p class="cardDescription"> Change the price of upgrades so it scales with how many the player has already bought (ie first bowl costs 10, second bowl costs 15). </p>
+	</div>
+	
+	
+	
+	<div class="upgradeCard ux">
+		<div class="headingContainer">
+			<span class="cardTitle"> Random News </span>
+			<span class="cardDifficulty"> 3 </span>
+		</div>
+		<p class="cardDescription"> Have a scrolling ticker-tape of random news headlines appear on screen. </p>
+	</div>
+
+	<div class="upgradeCard ux">
+		<div class="headingContainer">
+			<span class="cardTitle"> Stats and Achievements</span>
+			<span class="cardDifficulty"> 3 </span>
+		</div>
+		<p class="cardDescription"> Create another tab that the player can switch to and see achievements and statistics about their playthrough. </p>
+	</div>
+	
+	<div class="upgradeCard text-format">
+		<div class="headingContainer">
+			<span class="cardTitle"> Friendly Numbers </span>
+			<span class="cardDifficulty"> 3 </span>
+		</div>
+		<p class="cardDescription"> Display big numbers with commas in between to make them easier to read (ie 1,000,000 vs 1000000). </p>
+	</div>
+
+	<div class="upgradeCard ux">
+		<div class="headingContainer">
+			<span class="cardTitle"> Cosmetic Upgrades </span>
+			<span class="cardDifficulty"> 3 </span>
+		</div>
+		<p class="cardDescription"> Give the player the opportunity to buy some upgrades that change the appearance of the screen. </p>
+	</div>
+	
+	<div class="upgradeCard score">
+		<div class="headingContainer">
+			<span class="cardTitle"> More Friendly Numbers </span>
+			<span class="cardDifficulty"> 4 </span>
+		</div>
+		<p class="cardDescription"> Display numbers as words (ie 1 Million versus 1,000,000) </p>
+	</div>
+	
+	<div class="upgradeCard ux">
+		<div class="headingContainer">
+			<span class="cardTitle"> Reactive Interface </span>
+			<span class="cardDifficulty"> 4 </span>
+		</div>
+		<p class="cardDescription"> When the user interacts with elements on screen give them subtle feedback. For instance if they buy something have the text glow green, if they cant afford it have the text flash red and shake. </p>
+	</div>
+
+	
+
+	<div class="upgradeCard score">
+		<div class="headingContainer">
+			<span class="cardTitle"> Random Popups </span>
+			<span class="cardDifficulty"> 4 </span>
+		</div>
+		<p class="cardDescription"> Ocassionally have a random bonus appear somewhere on screen, and if the user pushes it they get extra puddings. </p>
+	</div>
+	
+
+</body>
