@@ -1,0 +1,124 @@
+<canvas id="gameCanvas" width="800" height="600" style="border: 3px solid black;"></canvas>
+
+<script>
+	// Load assets
+	var robo = new Image();
+	robo.src = "robot.png";
+	var tin = new Image();
+    tin.src = "tin.png";
+	
+	// Set variables
+	var robotX = 50;	// X and Y are measured from top left corner
+	var robotY = 400;
+	var robotWidth = 64;
+	var robotHeight = 128;
+	
+	var robotVertSpeed = 0
+	
+	var tinX = 600;
+	var tinY = 400+64;
+	var tinWidth = 64;
+	var tinHeight = 64;
+	
+	var gravity = 1;
+	var isGameRunning = true;
+	var distance = 0;
+	window.onload = function() { // When the HTML page loads.
+		canvas = document.getElementById('gameCanvas'); // The games canvas we drew earlier can be called as canvas now.
+		canvasContext = canvas.getContext('2d'); // The canvas context is 2D, which lets us use 2D presets.
+		
+		setInterval(mainLoop, 1000 / 60); // The main loop runs everything inside it ten times every second.	
+	}
+
+	function mainLoop(){
+		if (isGameRunning) {
+			draw();
+			update();
+		}
+	}
+	
+	function draw(){
+		// Draw background
+		canvasContext.fillStyle = "blue";
+		canvasContext.fillRect(0, 0, 800, 500);
+		canvasContext.fillStyle = "green";
+		canvasContext.fillRect(0, 500, 800, 600);
+		
+		// Draw characters
+		canvasContext.drawImage(robo, robotX, robotY, robotWidth, robotHeight);
+		canvasContext.drawImage(tin, tinX, tinY, tinWidth, tinHeight);
+		
+		// Draw score
+		canvasContext.font = "30px Arial";
+		canvasContext.fillStyle = "black";
+		canvasContext.fillText("Distance covered: " + distance, 450, 50);
+	}
+	
+	function update(){
+		//Increase distance travelled
+		distance += 1;
+		
+		// Update tin's position
+		tinX -= 5;
+		if (tinX <-100){
+			tinX = 900;
+		}
+		
+		
+		// Move robot vertically if need be
+		robotVertSpeed += gravity;
+		
+		robotY += robotVertSpeed;
+		
+		if (robotY > 400) {
+			robotY = 400;
+			robotVertSpeed = 0;
+		}
+		
+		// Check for robot/tin collision
+		if ( detectCollision(robotX, robotY, robotWidth, robotHeight, tinX, tinY, tinWidth, tinHeight) ){
+			isGameRunning = false;
+		}
+	}
+	
+	window.addEventListener('keyup',this.check,false); // keyup is only happen on release, keydown is happen when you hold
+		function check(e) {
+			var code = e.keyCode;
+			if (code == 38) { 			//Up arrow pressed
+				robotVertSpeed = -25;
+			} else if (code == 40) { 	//Down arrow pressed
+				// Nothing happens now
+			}
+		}
+	
+	function detectCollision(ax, ay, aw, ah, bx, by, bw, bh){
+	// Takes details of two objects as parameters and returns true or false whether they collide
+	// IMPORTANT object A needs to be the smaller object  (unless they are the same size)
+	// @author L Nickholds
+	// @lastModified 15/07/2023
+	// @param	ax	(int)	- The x coordinate of object A
+	// @param	ay	(int)	- The y coordinate of object A
+	// @param	aw	(int)	- The width of object A
+	// @param	ah	(int)	- The height of object A
+	// @param	bx	(int)	- The x coordinate of object B
+	// @param	by	(int)	- The y coordinate of object B
+	// @param	bw	(int)	- The width of object B
+	// @param	bh	(int)	- The height of object B
+	// @return     (boolean)- true if there is a collision, false if not
+		if (ax >= bx && ax <= bx+bw && ay >= by && ay <= by + by+bh) {
+			return true;
+		}
+		if (ax+aw >= bx && ax+aw  <= bx+bw && ay >= by && ay <= by + by+bh) {
+			return true;
+		}
+		if (ax >= bx && ax <= bx+bw && ay+ah >= by && ay <= by + by+bh) {
+			return true;
+		}
+		if (ax+aw  >= bx && ax+aw  <= bx+bw && ay+ah >= by && ay <= by + by+bh) {
+			return true;
+		}
+		console.log(bx + " " + ax + " " + (bx+bw));
+
+		return false
+	}
+</script>

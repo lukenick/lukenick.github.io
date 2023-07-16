@@ -1,0 +1,502 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+	body {
+		padding: 50px 20% 0% 20%;
+		<!-- background-color: #f8c87e -->;
+		background-color: #dff9fb;
+		color: #222222;
+		font-family: 'Poppins', sans-serif;
+	}
+	.codeBox {
+		white-space: nowrap;
+		counter-reset: line;
+		min-height: 200px;
+		background: #222222;
+		padding: 15px;
+		color: #ffffff;
+		text-align: left;
+		font-size: 16px;
+		margin: 0 auto;
+	}
+	.explanationBox {
+		border-radius: 20px;
+		background-color: #ffffff;
+		margin: 20 0 20 0;
+		padding: 1 10 1 10;
+	}
+	.explanationBox h2 {
+		font-size: 26px;
+		color: #222222;
+		text-align: center;
+	}
+	.explanationBox p {
+		font-size: 20px;
+		color: #222222;
+	}
+	.headingBox {
+		border-radius: 20px;
+		background-color: #ffffff;
+		margin: 20 20% 20 20%;
+		padding: 1 10 1 10;
+		text-align: center;
+		color: #222222;
+		width: 60%;
+	}
+	h1 {
+		color: #222222;
+		font-size: 48px;
+		text-align: center;
+	}
+</style>
+</head><body>
+
+<h1> Run Robot Run </h1>
+
+<!-- Version 0.1  -->
+<div class="explanationBox">
+	<h2> Version 0.1 - Creating a screen </h2>
+	<p>
+	99% of our code is going to be in Javascript, the only thing we need to do in HTML is to create a blank canvas for our game to run on. 
+	</p>
+</div>
+<div class="codeBox" style="min-width: 600px;">
+	<pre>1	&lt;canvas id="gameCanvas" width="800" height="600" style="border: 3px solid black;"&gt;&lt;/canvas&gt;
+	</pre>
+</div>
+<div class="explanationBox" style="">
+	<p> 
+		This section of code is pretty simple - we create a canvas, give it an ID and a width/height. The styling is optional, but personally I find it prettier with a border around the outside.
+	</p>
+</div>	
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.2  -->
+<div class="explanationBox">
+	<h2> Version 0.2 - Everything on screen </h2>
+	<p>
+	Now we need to actually show something on our canvas other than just a blank screen. We'll start off with three things - our background, our robot (the player character), and a tin can (an obstacle).
+	</p>
+</div>
+<div class="codeBox" style="min-width: 600px;">
+	<pre>
+1	&lt;canvas id="gameCanvas" width="800" height="600" style="border: 3px solid black;"&gt;&lt;/canvas&gt;
+2
+3	&lt;script&gt;
+4	// Load assets
+5	var robo = new Image();
+6	robo.src = "robot.png";
+7	var tin = new Image();
+8	tin.src = "tin.png";
+9	
+10	// When the HTML page loads, find the canvas and set some settings
+11	window.onload = function() {
+12		canvas = document.getElementById('gameCanvas');
+13		canvasContext = canvas.getContext('2d');
+14		canvasContext.imageSmoothingEnabled = false; // Make images appear pixelated not blurred
+15		
+16		// Draw background
+17		canvasContext.fillStyle = "blue";
+18		canvasContext.fillRect(0, 0, 800, 500);
+19		canvasContext.fillStyle = "green";
+20		canvasContext.fillRect(0, 500, 800, 600);
+21		
+22		// Draw characters
+23		canvasContext.drawImage(robo, 50, 400, 64, 128);
+24		canvasContext.drawImage(tin, 550, 464, 48, 64);
+25	}
+26	&lt;/script&gt;
+
+	</pre>
+</div>
+<div class="explanationBox" style="">
+	<p> 
+	To show images we need to load them, so our first section of code on Lines 3 to 8 loads those files in. If we wanted to have multiple of the same tin can on screen we'd only need to load it once though.
+	<br><br>
+	The rest of our code should only happen once the HTML has loaded, which is what Line 11 is talking about. Then we need to find the canvas and set some settings.
+	<br><br>
+	When drawing on screen we need to be sure to do it in the proper order. If we did the robot first, then we'd end up covering it with the sky and ground. So background first it is. We'll do that by drawing a blue rectangle and a green rectangle.
+	<br><br>
+	One slightly confusing aspect of the Canvas is 0,0 is the top left corner, not bottom left like if it was a graph in maths. So keep that in mind!
+	<br><br>
+	Next we'll draw our robot and tin. Each time there are five parameters - the first is the image to draw, second is the x coordinate of its top left corner, the third is the y coordinate of its top left corner, the four is how wide to draw it, and the fifth is how tall to draw it. Try for a second changing some of these numbers and see what effect it has (but then do change them back)
+	</p>
+</div>	
+
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.3  -->
+<div class="explanationBox">
+	<h2> Version 0.3 - Better organised </h2>
+	<p>
+	This version isn't going do anything different to the previous version. What it is going to do is be better organised though!
+	<br><br>
+	Why does that matter? Well if we organise ourselves now then it will be easier to make changes in the future.
+	</p>
+</div>
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+10	// Set variables
+11	var robotX = 50;	// X and Y are measured from top left corner
+12	var robotY = 400;
+13	var robotWidth = 64;
+14	var robotHeight = 128;
+15	
+16	var tinX = 600;
+17	var tinY = 400+64;
+18	var tinWidth = 64;
+19	var tinHeight = 64;
+20	
+21	// When the HTML page loads, find the canvas and set some settings
+22	window.onload = function() {
+23		canvas = document.getElementById('gameCanvas');
+24		canvasContext = canvas.getContext('2d');
+25		canvasContext.imageSmoothingEnabled = false; // Make images appear pixelated not blurred
+26		
+27		setInterval(mainLoop, 1000 / 60); // The main loop runs everything inside it sixty times every second.	
+28	}
+29
+30	function mainLoop(){
+31		draw();
+32		update();
+33	}
+34	
+35	function draw(){
+36		// Draw background
+37		canvasContext.fillStyle = "blue";
+38		canvasContext.fillRect(0, 0, 800, 500);
+39		canvasContext.fillStyle = "green";
+40		canvasContext.fillRect(0, 500, 800, 600);
+41		
+42		// Draw characters
+43		canvasContext.drawImage(robo, robotX, robotY, robotWidth, robotHeight);
+44		canvasContext.drawImage(tin, tinX, tinY, tinWidth, tinHeight);
+45	}
+46	
+47	function update(){
+48		// Empty for now. But it will do things later!
+49	}
+50	&lt;/script&gt;	
+	</pre>
+</div>
+<div class="explanationBox" style="">
+	<p> 
+		First, I'm going to create some variables to keep track of the X and Y positions of our objects, as well as their height and width. Having this information as variables means we can change it later on, which is something we want to be able to do so our robot can run.
+		<br><br>
+		Next we create a function called mainLoop(). In a game there are typically two main steps that you keep doing over and over again - changing anything in your data (for instance, rocks falling closer to the ground mean their Y variable changes) and then redrawing the screen (with your rocks now closer to the ground. We split those two parts into a function called update() which is currently empty, and a function called draw() which we'll move our old code to.
+		<br><br>
+		Our mainLoop() is going to run 60 times every second and do both the update() and the draw(). Why 60 times a second? It's a common convention for games to run at 60 frames a second. But why is it common? Look that's a longer question than I can answer here, but feel free to investigate on your own.
+		</p>
+</div>
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.4  -->
+<div class="explanationBox">
+	<h2> Version 0.4 - Jump robot jump! </h2>
+	<p>
+	Look, let's be honest. So far this isn't really a game. You could <i> maybe </i> call it an animation, but even for an animation it's pretty boring.
+	<br>
+	So let's spice it up and teach our robot to jump!
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+47	function update(){
+48		// Still does nothing. Be patient!
+49	}
+50	
+51	window.addEventListener('keyup',this.check,false); // keyup is only happen on release, keydown is happen when you hold
+52	function check(e) {
+53		var code = e.keyCode;
+54		if (code == 38) { 			//Up arrow pressed
+55			robotY -= 5;
+56		} else if (code == 40) { 	//Down arrow pressed
+57			robotY += 5;
+58		}
+59	}
+60	&lt;/script&gt;		
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	One of the things that defines a game is that the player can interact with it in someway. We're going to do this by adding an event listener which listens out for a key press. Then it checks which key - each of the keys on the keyboard have different keycode. We're going to listen for Up Arrow and Down Arrow, but if you wanted you could change this to be different keys, maybe W for up and S for down.
+	<br><br>
+	At the moment our code is basic, when we press up the character we change its Y variable to move up. And when we press down the character moves down the same way. It doesn't feel particular smooth like in say a Mario game. Soon we'll make the code more realistic and challenging.
+	</p>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.5  -->
+<div class="explanationBox">
+	<h2> Version 0.5 - Moving obstacles </h2>
+	<p>
+	Our robot can move around so it's only fair that we let our tin cans move too. What we want is for our tin cans to move from the right to the left of the screen at a constant pace. 	
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+47	function update(){
+48		// Update tin's position
+49		tinX -= 1;		
+50		if (tinX <-100){
+51			tinX = 900;
+52		}
+53	}
+...
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	Hopefully you can agree this is one of the simplest changes. Line 49 changes our tinX to be slightly more to the left. Line 50 checks if the tin has move well off the left side of the screen, and if so moves the in back off the right side of the screen.
+	<br><br>
+	Are you happy with the speed of the tin? If not then increase it. You're the programmer, you're in control of this world.
+	</p>
+</div>
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.6  -->
+<div class="explanationBox">
+	<h2> Version 0.6 - Gravity </h2>
+	<p>
+	Our game is too easy at the moment thanks to our unrealistic jump. If we press up the robot moves up and just starts floating. We want the robot to be affected by gravity so that's just what we'll do
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+10		// Set variables
+11	var robotX = 50;	// X and Y are measured from top left corner
+12	var robotY = 400;
+13	var robotWidth = 64;
+14	var robotHeight = 128;
+15	
+16	var robotVertSpeed = 0
+17	
+18	var tinX = 600;
+19	var tinY = 400+64;
+20	var tinWidth = 64;
+21	var tinHeight = 64;
+22	
+23	var gravity = 1;
+...
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	Now as an introduction to gravity I want to say you don't need to understand HOW this works (although great if you can!), you are okay to just use it. Those of you who have done some physics might have an advantage though.
+	<br><br>
+	First up we're making two new  variables. robotVertSpeed keeps track of how fast the robot is moving up or down. 0 is stationery, negative numbers moving up, and positive numbers moving down.
+	<br>
+	gravity keeps track of how quickly we want things to fall. Again positive means things fall down, negative means things fall up.
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+51	function update(){
+52	// Update tin's position
+53		tinX -= 1;
+54		if (tinX <-100){
+55			tinX = 900;
+56		}
+57		
+58		
+59		// Move robot vertically if need be
+60		robotVertSpeed += gravity;
+61		
+62		robotY += robotVertSpeed;
+63		
+64		if (robotY > 400) {
+65			robotY = 400;
+66			robotVertSpeed = 0;
+67		}
+68		
+69	}
+70	
+71	window.addEventListener('keyup',this.check,false); // keyup is only happen on release, keydown is happen when you hold
+72	function check(e) {
+73		var code = e.keyCode;
+74		if (code == 38) { 			//Up arrow pressed
+75			robotVertSpeed = -20;
+76		} else if (code == 40) { 	//Down arrow pressed
+77			// Nothing happens now
+78		}
+79	}
+...
+	</pre>
+</div>
+
+<div class="explanationBox" style="">
+	<p>
+	Now we're going to change our update() function and our eventListener's function.
+	<br><br>
+	Each tick (which is a way of saying each time the loop runs update() and draw()) we need to change the robots speed by gravity. Then we move our robot based on its speed. Lastly since we have a flat ground, if the robot goes under y=400 then we move it back to y=400 and make its speed 0 - so it doesn't fall through the earth.
+	<br><br>
+	Then we just want to change our Up Arrow and Down Arrow so they either change our speed or do nothing.
+	<br><br>
+	And that's about it. Try it now and you should have much nicer jumping. Play around and change the gravity on Line 23 or the robotVertSpeed on Line 75 to change the jump. You don't need to understand how/why this works, just how to use it.
+	</p>
+</div>
+
+<br><br><br><br><br><br><br><br>
+<!-- Version 0.7  -->
+<div class="explanationBox">
+	<h2> Version 0.7 - Collisions </h2>
+	<p>
+	Our game is still too easy at the moment - because nothing actually happens if you run over a tin can. So let's change that!	
+	</p>
+</div>
+
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+23	var gravity = 1;
+24	var isGameRunning = true;
+25	window.onload = function() { // When the HTML page loads.
+...
+32	function mainLoop(){
+33		if (isGameRunning) {
+34			draw();
+35			update();
+36		}
+37	}
+...
+51	function update(){
+52		// Update tin's position
+53		tinX -= 1;
+54		if (tinX <-100){
+55			tinX = 900;
+56		}
+57		
+58		
+59		// Move robot vertically if need be
+60		robotVertSpeed += gravity;
+61		
+62		robotY += robotVertSpeed;
+63		
+64		if (robotY > 400) {
+65			robotY = 400;
+66			robotVertSpeed = 0;
+67		}
+68		
+69		// Check for robot/tin collision
+70		if ( detectCollision(robotX, robotY, robotWidth, robotHeight, tinX, tinY, tinWidth, tinHeight) ){
+71			isGameRunning = false;
+72		}
+73	}
+...
+	</pre>
+</div>	
+<div class="explanationBox" style="">
+	<p>
+	Our first change is very basic, on Line 24 we're adding a new variable called isGameRunning. I'll leave it up to you to work our what that keeps track of.
+	<br><br>
+	Next we tell our mainLoop to only draw() and update() if the game is running. Otherwise, everything just freezes.
+	<br><br>
+	Then we add a section to our update() function which runs some code called detectCollision() and if there is a collision then it says the game is no longer running.
+	<br><br>
+	Is that everything? No, there is one more section to add.
+	</p>
+</div>
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+85	function detectCollision(ax, ay, aw, ah, bx, by, bw, bh){
+86	// Takes details of two objects as parameters and returns true or false whether they collide
+87	// IMPORTANT object A needs to be the smaller object  (unless they are the same size)
+88	// @author L Nickholds
+89	// @lastModified 15/07/2023
+90	// @param	ax	(int)	- The x coordinate of object A
+91	// @param	ay	(int)	- The y coordinate of object A
+92	// @param	aw	(int)	- The width of object A
+93	// @param	ah	(int)	- The height of object A
+94	// @param	bx	(int)	- The x coordinate of object B
+95	// @param	by	(int)	- The y coordinate of object B
+96	// @param	bw	(int)	- The width of object B
+97	// @param	bh	(int)	- The height of object B
+98	// @return     (boolean)- true if there is a collision, false if not
+99		if (ax >= bx && ax <= bx+bw && ay >= by && ay <= by + by+bh) {
+100			return true;
+101		}
+102		if (ax+aw >= bx && ax+aw  <= bx+bw && ay >= by && ay <= by + by+bh) {
+103			return true;
+104		}
+105		if (ax >= bx && ax <= bx+bw && ay+ah >= by && ay <= by + by+bh) {
+106			return true;
+107		}
+108		if (ax+aw  >= bx && ax+aw  <= bx+bw && ay+ah >= by && ay <= by + by+bh) {
+109			return true;
+110		}
+111		console.log(bx + " " + ax + " " + (bx+bw));
+112
+113		return false
+114	}
+115 &lt;/script&gt;	
+</pre>
+</div>
+<div class="explanationBox" style="">
+	<p>
+	Right at the end we need to add the function that actually checks if there is a collision. This is another chunk of code that you don't need to be able to understand, just able to use it. (Although again great if you can understand it! It's easier to explain in person with a diagram, so ask if you want.)
+	<br><br>
+	Lines 86 to 98 tell you about the function, what it does, who made it, and what information you need to give it to run it. This is similar to our work in Level 1 last year. Make sure to notice the important note.
+	<br><br>
+	Go ahead and copy that across and try out your game now.
+	</p>
+</div>
+
+<br><br><br><br><br><br><br><br>
+<div class="explanationBox" style="">
+	<h2> Version 0.8 - Score </h2>
+	<p>
+	I think it's important to note that the current version of game is most definitely a game. The player has a goal (survive as long as possible), they have obstacles that challenge that goal (the tins), and they have a way to interact with the game.
+	<br><br>
+	We're going to add one more feature and then call it done with our MVP - Minimum Viable Product.
+	<br><br>
+	That one more feature? A score - to try and keep players hooked trying to do better each time.
+	</p>
+</div>
+<div class="codeBox" style="min-width: 600px;">
+	<pre>...
+23	var gravity = 1;
+24	var isGameRunning = true;
+25	var distance = 0;
+...	
+
+40	function draw(){
+41		// Draw background
+42		canvasContext.fillStyle = "blue";
+43		canvasContext.fillRect(0, 0, 800, 500);
+44		canvasContext.fillStyle = "green";
+45		canvasContext.fillRect(0, 500, 800, 600);
+46		
+47		// Draw characters
+48		canvasContext.drawImage(robo, robotX, robotY, robotWidth, robotHeight);
+49		canvasContext.drawImage(tin, tinX, tinY, tinWidth, tinHeight);
+50		
+51		// Draw score
+52		canvasContext.font = "30px Arial";
+53		canvasContext.fillStyle = "black";
+54		canvasContext.fillText("Distance covered: " + distance, 450, 50);
+55	}
+...
+57	function update(){
+58		//Increase distance travelled
+59		distance += 1;
+60		
+61		// Update tin's position
+...
+
+	}
+</pre>
+</div>
+<div class="explanationBox" style="">
+	<p>
+	Compared to some previous sections this is pretty easy. On Line 25 we create a new variable called distance to track how far we've travelled. We add Lines 51 to 54 to draw() to display that on screen, and on Line 59 in update() we make sure to increase how far we've travelled.
+	</p>
+</div>
+
+</body></html>
